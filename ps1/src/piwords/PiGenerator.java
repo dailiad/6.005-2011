@@ -27,8 +27,10 @@ public class PiGenerator {
      * @return a^b mod m
      */
     public static int powerMod(int a, int b, int m) {
-        // TODO: Implement (Problem 1.b)
-        return -1;
+        if (a < 0 || b < 0 || m < 0) {
+            return -1;
+        }
+        return (int) (Math.pow(a, b) % m);
     }
     
     /**
