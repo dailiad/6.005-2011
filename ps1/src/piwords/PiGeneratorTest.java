@@ -76,11 +76,9 @@ public class PiGeneratorTest {
     
     @Test
     public void testPrecision4() {
-        assertEquals(4, PiGenerator.computePiInHex(4).length);
-        assertEquals(2, PiGenerator.computePiInHex(4)[0]);
-        assertEquals(4, PiGenerator.computePiInHex(4)[1]);
-        assertEquals(3, PiGenerator.computePiInHex(4)[2]);
-        assertEquals(15, PiGenerator.computePiInHex(4)[3]);
+        int[] expectedOutput = {2, 4, 3, 15};
+        assertArrayEquals(expectedOutput, 
+                          PiGenerator.computePiInHex(4));
     }
     
 }

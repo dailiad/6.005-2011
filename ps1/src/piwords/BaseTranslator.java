@@ -33,7 +33,35 @@ public class BaseTranslator {
      */
     public static int[] convertBase(int[] digits, int baseA,
                                     int baseB, int precisionB) {
-        // TODO: Implement (Problem 2.b)
-        return null;
+        for (int i: digits) {
+            if (i >= baseA || i < 0) {
+                return null;
+            }
+        }
+        
+        if (baseA < 2 || baseB < 2 || precisionB < 1 || digits.length < 1) {
+            return null;
+        }
+        
+        int[] tempDigits = digits.clone();
+        int carry = 0;
+        int[] output = new int[precisionB];
+        int x = 0;
+        for (int i = 0; i < precisionB; i++) {
+            carry = 0;
+            for (int j = digits.length - 1; j >= 0; j--) {
+                x = tempDigits[j] * baseB + carry;
+                tempDigits[j] = x % baseA;
+                carry = x / baseA;
+            }
+            output[i] = carry;
+        }
+        
+        return output;
+    }
+    
+    public static void main(String[] args) {
+        int[] a = new int[0];
+        System.out.println(a.length);
     }
 }

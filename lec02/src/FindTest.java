@@ -8,7 +8,7 @@ public class FindTest {
     //
     // x: neg, 0, pos
     // a.length: 0, 1, 2+
-    // a.vals: neg, 0, pos; all same, increasing; 
+    // a.vals: neg, 0, pos, all same, increasing; 
     // i: 0, middle, n-1, -1
 
     @Test

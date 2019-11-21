@@ -86,6 +86,6 @@ public class PiGenerator {
     }
     
     public static void main(String[] args) {
-        System.out.println(PiGenerator.piDigit(4));
+        System.out.println(PiGenerator.piDigit(0));
     }
 }
