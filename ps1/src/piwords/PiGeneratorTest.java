@@ -65,17 +65,22 @@ public class PiGeneratorTest {
     
     @Test
     public void testPrecisionZero() {
-        assertEquals(new int[] {}, PiGenerator.computePiInHex(0));
+        assertEquals(0, PiGenerator.computePiInHex(0).length);
     }
     
     @Test
     public void testPrecisionOne() {
-        assertEquals(new int[] {1}, PiGenerator.computePiInHex(1));
+        assertEquals(2, PiGenerator.computePiInHex(1)[0]);
+        assertEquals(1, PiGenerator.computePiInHex(1).length);
     }
     
     @Test
-    public void testPrecisionTwoPlus() {
-        assertEquals(new int[] {PiGenerator.piDigit(1), PiGenerator.piDigit(2)}, PiGenerator.computePiInHex(2));
+    public void testPrecision4() {
+        assertEquals(4, PiGenerator.computePiInHex(4).length);
+        assertEquals(2, PiGenerator.computePiInHex(4)[0]);
+        assertEquals(4, PiGenerator.computePiInHex(4)[1]);
+        assertEquals(3, PiGenerator.computePiInHex(4)[2]);
+        assertEquals(15, PiGenerator.computePiInHex(4)[3]);
     }
     
 }
