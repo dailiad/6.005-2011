@@ -1,5 +1,9 @@
 package piwords;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
 public class AlphabetGenerator {
     /**
      * Given a numeric base, return a char[] that maps every digit that is
@@ -52,7 +56,60 @@ public class AlphabetGenerator {
      */
     public static char[] generateFrequencyAlphabet(int base,
                                                    String[] trainingData) {
-        // TODO: Implement (Problem 5.b)
-        return null;
+        if (base < 0) {
+            return null;
+        }
+        
+        // compute nums of letters, store in map
+        Map<Character, Integer> chars = new HashMap<>();
+        int numOfCharacters = 0;
+        for (String data: trainingData) {
+            for (char letter: data.toCharArray()) {
+                if (letter >= 'a' && letter <= 'z') {
+                    if (chars.containsKey(letter)) {
+                        chars.put(letter, chars.get(letter) + 1);
+                    } else {
+                        chars.put(letter, 1);
+                    }
+                    numOfCharacters++;
+                }
+            }
+        }
+        
+        if (numOfCharacters == 0) {
+            return null;
+        }
+        
+        Map<Character, Float> PDF = new HashMap<>();
+        for (Character c: chars.keySet()) {
+            PDF.put(c, (float)chars.get(c) / numOfCharacters);
+        }
+        
+        Map<Character, Float> CDF = new HashMap<>();
+        float sum = 0.0F;
+        Character[] charsArray = new Character[PDF.size()];
+        Arrays.sort(PDF.keySet().toArray(charsArray));
+        for (Character c: charsArray) {
+            sum += PDF.get(c);
+            CDF.put(c, sum);
+        }
+        
+        Map<Character, Integer> lastIndexOfLetterInAlphabet = new HashMap<>();
+        for (Character c : PDF.keySet()) {
+            lastIndexOfLetterInAlphabet.put(c, Math.round(CDF.get(c) * base));
+        }
+        
+        char[] output = new char[base];
+        for (int i = 0; i < base; i++) {
+            for (Character c : charsArray) {
+                if (i < lastIndexOfLetterInAlphabet.get(c)) {
+                    output[i] = c;
+                    break;
+                }
+            }
+        }
+        
+        
+        return output;
     }
 }
