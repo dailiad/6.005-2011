@@ -10,6 +10,9 @@ public class PianoMachine {
 	
 	private Midi midi;
 	private Instrument currentInstrument = Midi.DEFAULT_INSTRUMENT;
+	// initial pitch level is 0, means the middle pitch.
+	// -2 <= pitchlevel <= 2
+	private int pitchLevel = 0;
     
 	/**
 	 * constructor for PianoMachine.
@@ -31,7 +34,7 @@ public class PianoMachine {
      * @param rawPitch : the pitch to be played by midi device
      */
     public void beginNote(Pitch rawPitch) {
-    	midi.beginNote(rawPitch.toMidiFrequency(), currentInstrument);
+    	midi.beginNote(rawPitch.toMidiFrequency() + pitchLevel * Pitch.OCTAVE, currentInstrument);
 
     }
     
@@ -40,7 +43,7 @@ public class PianoMachine {
      * @param rawPitch: the pitch to be stopped
      */
     public void endNote(Pitch rawPitch) {
-    	midi.endNote(rawPitch.toMidiFrequency(), currentInstrument);
+    	midi.endNote(rawPitch.toMidiFrequency() + pitchLevel * Pitch.OCTAVE, currentInstrument);
     }
     
     /**
@@ -51,14 +54,25 @@ public class PianoMachine {
         currentInstrument = currentInstrument.next();
     }
     
-    //TODO write method spec
+    /**
+     * shift current pitch level up by 1.
+     * pitch level will never higher than 2.
+     */
     public void shiftUp() {
-    	//TODO: implement for question 3
+        if (pitchLevel < 2) {
+            pitchLevel++;
+        }
     }
     
-    //TODO write method spec
+    
+    /**
+     * shift current pitch level up by 1.
+     * pitch level will never lower than -2.
+     */
     public void shiftDown() {
-    	//TODO: implement for question 3
+        if (pitchLevel > -2) {
+            pitchLevel--;
+        }
     }
     
     //TODO write method spec
