@@ -32,6 +32,9 @@ public class PianoApplet extends Applet {
         // when a key is pressed in the GUI
     	addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent e) {
+                if (e.getWhen() + 1 < System.currentTimeMillis()) {
+                    return;
+                }
             	System.out.println("key pressed");
                 char key = (char) e.getKeyCode();
                 switch (key) {
@@ -67,7 +70,14 @@ public class PianoApplet extends Applet {
                     return;
                 case 'p':
                 case 'P':
+                    
+                    isRecording = piano.toggleRecording();
                     piano.playback();
+                    if(isRecording) {
+                        setBackground(Color.red);
+                    } else {
+                        setBackground(Color.green);
+                    }
                     return;
                 case 'i':
                 case 'I':
@@ -87,6 +97,9 @@ public class PianoApplet extends Applet {
 
         addKeyListener(new KeyAdapter() {
             public void keyReleased(KeyEvent e) {
+                if (e.getWhen() + 1 < System.currentTimeMillis()) {
+                    return;
+                }
             	System.out.println("key released");
                 char key = (char) e.getKeyCode();
                 switch (key) {

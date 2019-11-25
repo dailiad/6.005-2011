@@ -121,7 +121,7 @@ public class PianoMachine {
      * play the recorded rhythm
      */
     protected void playback() {
-        isRecording = false;
+        //isRecording = false;
         midi.clearHistory();
         if (rhythm.isEmpty()) {
             return;
