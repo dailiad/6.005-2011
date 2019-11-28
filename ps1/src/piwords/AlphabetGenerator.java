@@ -66,11 +66,8 @@ public class AlphabetGenerator {
         for (String data: trainingData) {
             for (char letter: data.toCharArray()) {
                 if (letter >= 'a' && letter <= 'z') {
-                    if (chars.containsKey(letter)) {
-                        chars.put(letter, chars.get(letter) + 1);
-                    } else {
-                        chars.put(letter, 1);
-                    }
+                    Integer freq = chars.get(letter);
+                    chars.put(letter, (freq == null ? 1 : freq + 1));
                     numOfCharacters++;
                 }
             }

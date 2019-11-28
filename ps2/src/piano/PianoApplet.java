@@ -70,14 +70,7 @@ public class PianoApplet extends Applet {
                     return;
                 case 'p':
                 case 'P':
-                    
-                    isRecording = piano.toggleRecording();
                     piano.playback();
-                    if(isRecording) {
-                        setBackground(Color.red);
-                    } else {
-                        setBackground(Color.green);
-                    }
                     return;
                 case 'i':
                 case 'I':
