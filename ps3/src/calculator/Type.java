@@ -1,12 +1,25 @@
 package calculator;
 
 /*
- * TODO define your symbols and groups from problem 1 here
+ * symbols:'+', '-', '*', '/', 'in', 'pt', '(', ')', '0', '3', '4.5' ...
+ * types:
+ *     NUMBER: '0', '3', '4.5', ...
+ *     UNIT: 'in', 'pt'
+ *     OPEN_PARENTHESE: '('
+ *     CLOSE_PARENTHESE: ')'
+ *     PLUSANDMINUS: '+', '-'
+ *     DIVIDEANDMULTIPLY: '/', '*'
+ *     
  */
 
 /**
  * Token type.
  */
 enum Type {
-	// TODO define for problem 1
+	NUMBER,     // '0'
+	UNIT,       // 'in', 'pt'
+	OPEN_PARENTHESE,  // '('
+	CLOSE_PARENTHESE, // ')'
+	OPERATOR,     // '+', '-' , '*', '/'
+	EOF               //end of file
 }
