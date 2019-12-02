@@ -140,13 +140,8 @@ class Parser {
                 type = leftType;
             }
             
-            if (leftType == ValueType.INCHES && rightType == ValueType.SCALAR) {
-                value = leftValue * rightValue * PT_PER_IN;
-            } else if (leftType == ValueType.SCALAR && rightType == ValueType.INCHES) {
-                value = leftValue * PT_PER_IN * rightValue;
-            } else {
-                value = leftValue * rightValue;
-            }
+          
+            value = leftValue * rightValue;
             return new Value(value, type);
 		    
 		}

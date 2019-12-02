@@ -52,10 +52,14 @@ public class ParserTest {
         setUp(scalarWithPt);
         assertEquals("6.6 pt", parser.evaluate().toString());
         
-        String scalarWithInch = "3.3in + 1";
+        String scalarPlusInch = "3.3in + 1";
         double expected = (3.3 * 72 + 72) / 72;
-        setUp(scalarWithInch);
+        setUp(scalarPlusInch);
         assertEquals(expected + " in", parser.evaluate().toString());
+        
+        String scalarMultiplyInch = "1.1 * 2in";
+        setUp(scalarMultiplyInch);
+        assertEquals("2.2 in", parser.evaluate().toString());
         
         // use units of the first operand : pt + in -> pt
         String ptTimesInch = "3pt * 2.4in";

@@ -1,12 +1,22 @@
 package calculator;
 
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Assert;
 import org.junit.Test;
 
+import calculator.Lexer.TokenMismatchException;
+import calculator.Parser.ParserException;
+
 public class CalculatorTest {
 
-	// TODO write tests for MultiUnitCalculator.evaluate
-
+    @Test
+    public void testCalculator() throws ParserException, TokenMismatchException {
+        MultiUnitCalculator mc = new MultiUnitCalculator();
+        String expression = "(((2.1-1)*2in)/2pt)+(3-2)in";
+        assertTrue(approxEquals(mc.evaluate(expression), "80.2 in", true));
+    }
+    
 	boolean approxEquals(String expr1, String expr2, boolean compareUnits) {
 		return new Value(expr1).approxEquals(new Value(expr2), compareUnits);
 	}

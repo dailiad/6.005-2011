@@ -4,6 +4,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import calculator.Lexer.TokenMismatchException;
+import calculator.Parser.ParserException;
+import calculator.Parser.Value;
+
 /**
  * Multi-unit calculator.
  */
@@ -16,9 +20,11 @@ public class MultiUnitCalculator {
 	 * @return the value of the expression, as a number possibly followed by
 	 *         units, e.g. "72pt", "3", or "4.882in"
 	 */
-	public String evaluate(String expression) {
-        return expression;
-		// TODO implement for Problem 4
+	public String evaluate(String expression) throws ParserException, TokenMismatchException {
+	    Lexer lexer = new Lexer(expression);
+	    Parser parser = new Parser(lexer);
+	    Value value = parser.evaluate();
+        return value.toString();
 	}
 
 	/**
@@ -45,9 +51,17 @@ public class MultiUnitCalculator {
 
 			// evaluate
 			calculator = new MultiUnitCalculator();
-			result = calculator.evaluate(expression);
-			// display result
-			System.out.println(result);
+			try {
+                result = calculator.evaluate(expression);
+                // display result
+                System.out.println(result);
+                
+            } catch (ParserException e) {
+                e.printStackTrace();
+            } catch (TokenMismatchException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
 		}
 	}
 }
